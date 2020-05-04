@@ -46,5 +46,5 @@ def drawtree(root):
     turtle.mainloop()
     
 if __name__ == '__main__':
-    drawtree(deserialize('[83,65,null,null,67,83,66,null,null,83,83,65,null,null,66,null,null,66,null,null,65,null,null]'))
-    drawtree(deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7]'))
+    drawtree(deserialize('[83,65,67,null,null,83,66,83,83,null,null,65,66,66,65,null,null,null,null,null,null,null,null]'))
+    drawtree(deserialize('[2,1,3,0,7,9,1,2,null,1,0,null,null,8,8,null,null,null,null,7,null,null,null,6]'))
