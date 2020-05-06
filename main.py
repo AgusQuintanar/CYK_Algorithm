@@ -6,15 +6,6 @@ class Node:
         self.left = left    # Left child
         self.right = right  # Right child
 
-recorrido = []
-entradas = []
-
-entradas.append("S->AB|SS|AC|BD|BA")
-entradas.append("A->a")
-entradas.append("B->b")
-entradas.append("C->SB")
-entradas.append("D->SA")
-
 def imprimir_matriz(matriz):
     for x in matriz:
         print(x)
@@ -58,17 +49,20 @@ def imprimir_arbol_de_derivacion(root):
         nivel.clear()
         print()
         for node in nivel_temp:
-            try:
-                print(node.value)
-                if node.value != "null":
-                    nivel.append(node)
-                recorrido.append(node.value)
-            except:
-                pass
+            if node.value != "null":
+                nivel.append(node)
+            recorrido.append(node.value)
+         
+recorrido = []
+entradas = []
 
+entradas.append("S->AB|SS|AC")
+entradas.append("A->[")
+entradas.append("B->]")
+entradas.append("C->SB")
 
-cadena = list("aabbab")
-print(cadena)
+cadena = list("[[][]]")
+print("cadena", cadena)
 n = len(cadena)
 
 producciones = {}
@@ -99,7 +93,6 @@ for i in range(1, n):
             elif k == i-1:
                 matriz_sub[j-i][j][0] = None
 
-
 print("\n")
 imprimir_matriz(matriz_sub)
 print("\n")
@@ -107,18 +100,18 @@ print("\n")
 if matriz_sub[0][n-1][0] == "S":
     print("La cadena si pertenece a la Gramatica")
     generar_arbol_de_derivacion(matriz_sub, n)
+
+    recorrido_str = ""
+    for x in recorrido:
+        if x == "null":
+            recorrido_str += "null,"
+        else:
+            recorrido_str += str(ord(x)) + ","
+            #recorrido_str += str(x) + ","
+
+    print('['+recorrido_str.rstrip(',')+']')
+    bt.drawtree(bt.deserialize('['+recorrido_str.rstrip(',')+']'))
 else:
     print("La cadena no pertene a la gramatica")
 
 
-recorrido_str = ""
-for x in recorrido:
-    if x == "null":
-        recorrido_str += "null,"
-    else:
-        recorrido_str += str(ord(x)) + ","
-        #recorrido_str += str(x) + ","
-
-print('['+recorrido_str.rstrip(',')+']')
-
-bt.drawtree(bt.deserialize('['+recorrido_str.rstrip(',')+']'))
